@@ -17,7 +17,7 @@ class Parser:
         }
         self.st_accept = "text/html"
         self.st_useragent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 12_3_1) AppleWebKit/605.1.15 (KHTML, like Gecko) " \
-                            "Version/15.4 " \
+                            "Version/15.3 " \
                             "Safari/605.1.15"
 
         self.headers = {
@@ -135,6 +135,6 @@ print(courses[0].to_dict())
 end = time()
 # print(courses)
 courses = [course.to_dict() for course in courses]
-with open("courses.json", "w") as file:
-    json.dump([ob.__dict__ for ob in courses], file, default=lambda o: o.__dict__,
-              sort_keys=True, indent=4, ensure_ascii=False)
+data = json.dumps(courses, sort_keys=True, indent=4, ensure_ascii=False)
+with open("courses.json", "w", encoding='utf-8') as file:
+    file.write(data)
