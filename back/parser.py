@@ -1,5 +1,6 @@
 from time import sleep, time
 
+from parse_hh_data import download, parse
 import requests
 from bs4 import BeautifulSoup
 import threading
@@ -17,7 +18,7 @@ class Parser:
         }
         self.st_accept = "text/html"
         self.st_useragent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 12_3_1) AppleWebKit/605.1.15 (KHTML, like Gecko) " \
-                            "Version/15.3 " \
+                            "Version/15.4 " \
                             "Safari/605.1.15"
 
         self.headers = {
@@ -130,11 +131,33 @@ def parse_text(url):
     return courses
 
 
-courses = parse_text('https://gb.ru/courses/all')
-print(courses[0].to_dict())
-end = time()
+class ParseHH:
+    def __init__(self, url):
+        self.url = url
+
+    def extract_id(self):
+        self.id = self.url.split('vacancy/')[1].split('/')[0]
+
+    def parse(self):
+        self.extract_id()
+        return download.vacancy(self.id)
+
+    def description(self):
+        self.extract_id()
+        soup = BeautifulSoup(download.vacancy(self.id)['description'], 'html.parser')
+        return soup.text
+
+    def title(self):
+        self.extract_id()
+        soup = BeautifulSoup(download.vacancy(self.id)['name'], 'html.parser')
+        return soup.text
+
+# courses = parse_text('https://gb.ru/courses/all')
+# print(courses[0].to_dict())
 # print(courses)
-courses = [course.to_dict() for course in courses]
-data = json.dumps(courses, sort_keys=True, indent=4, ensure_ascii=False)
-with open("courses.json", "w", encoding='utf-8') as file:
-    file.write(data)
+# courses = [course.to_dict() for course in courses]
+# data = json.dumps(courses, indent=4, ensure_ascii=False)
+# with open("courses.json", "w", encoding='utf-8') as file:
+#     file.write(data)
+#    json.dump([ob.__dict__ for ob in courses], file, default=lambda o: o.__dict__,
+#              sort_keys=True, indent=4, ensure_ascii=False)
