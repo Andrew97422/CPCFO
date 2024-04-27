@@ -1,6 +1,6 @@
 from flask import Flask, request
 from flask_cors import CORS
-from tika import parser  # pip install tika
+from tika import parser
 from parser import ParseHH
 import os
 
