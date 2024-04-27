@@ -1,0 +1,12 @@
+torch==2.2.0+cu121
+transformers==4.40.1
+accelerate==0.29.3
+bitsandbytes==0.43.1
+sentence-transformers==2.7.0
+sentencepiece==0.2.0
+peft==0.10.0
+pandas
+matplotlib
+seaborn
+nltk
+Pillow

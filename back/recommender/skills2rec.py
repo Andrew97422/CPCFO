@@ -67,6 +67,7 @@ def summarize(document, max_signs=30):
     return ' '.join([words[i].strip() for i in range(len(words)) if i in central_indices[:word_index+1]])
 
 def get_coherence_map(u) -> pd.DataFrame:
+    '''index=title, columns=skills'''
     u = pd.Series(u)
     querry = get_querry(u.body)
     qembs = sen_model.encode(list(map(stem, [u.title] + querry.values)), convert_to_tensor=True)
