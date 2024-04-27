@@ -1,2 +1,4 @@
 /front/node_modules/
 /back/venv/
+__pycache__
+.DS_Store
