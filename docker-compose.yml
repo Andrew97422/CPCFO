@@ -16,7 +16,7 @@ services:
             dockerfile: Dockerfile
 
         environment:
-            - HOST=http://78.40.188.96:26601
+            - HOST=http://localhost:26601
             - NODE_ENV=development
             - NEXT_TELEMETRY_DISABLED=1
 
