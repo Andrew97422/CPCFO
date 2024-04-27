@@ -4,8 +4,8 @@ import axios from 'axios';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-let text_url = "http://localhost:5000/predict_text";
-let pdf_url = "http://localhost:5000/predict_pdf";
+let text_url = "${process.env.HOST}/predict_text";
+let pdf_url = "${process.env.HOST}/predict_pdf";
 
 const headers = {
   'Content-Type': 'application/json'
