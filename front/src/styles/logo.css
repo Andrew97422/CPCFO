@@ -1,0 +1,60 @@
+#header-monolit .mn-header__logo-image {
+    display: block;
+    width: 186px;
+    height: 24px;
+    background-image: url("https://frontend-scripts.hb.bizmrg.com/assets/logo/geekbrains-logo-light.svg");
+    background-size: 186px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+}
+@media (max-width: 767px) {
+  #header-monolit .mn-header__logo-image {
+    width: 155px;
+    height: 20px;
+    background-size: 155px 20px;
+  }
+}
+#header-monolit .mn-header__logo-image_hat {
+  position: absolute;
+  width: 41px;
+  height: 33px;
+  top: -5px;
+  left: -13px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  background-image: url("https://hb.bizmrg.com/frontend-scripts/assets/new-year/logo-gb-new-year.svg");
+}
+@media (max-width: 767px) {
+  #header-monolit .mn-header__logo-image_hat {
+    top: -3px;
+    left: -14px;
+    transform: scale(0.8);
+  }
+}
+#header-monolit .mn-header__logo-image_short {
+  width: 24px;
+  height: 24px;
+  background-image: url("https://frontend-scripts.hb.bizmrg.com/assets/logo/geekbrains-logo-short.svg");
+  background-size: 24px 24px;
+}
+@media (max-width: 767px) {
+  #header-monolit .mn-header__logo-image_short {
+    background-image: url("https://frontend-scripts.hb.bizmrg.com/assets/logo/geekbrains-logo-light.svg");
+    width: 155px;
+    height: 20px;
+    background-size: 155px 20px;
+  }
+}
+
+.gb-app-button__link {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.gb-app-button:disabled .gb-app-button__link {
+  cursor: default;
+}

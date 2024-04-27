@@ -2,6 +2,8 @@ from flask import Flask, request
 from flask_cors import CORS
 from tika import parser
 from parser import ParseHH
+from time import sleep
+
 import json
 import os
 
@@ -22,7 +24,9 @@ def predict(vacancy_text):
 def predict_text():
     content_type = request.headers.get('Content-Type')
     if content_type == 'application/json':
-        prediction = predict(request.json['vacancy_text'])
+        prediction = json.dumps(request.json['vacancy_text'])
+        # sleep(10)
+        print(prediction)
         return prediction
 
 

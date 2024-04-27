@@ -1,0 +1,384 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    box-sizing: border-box;
+  }
+  
+  @font-face {
+    font-family: "Benzin-Bold";
+    src: local("Benzin Bold"), url("https://gb.ru/channels/shared-components_banners/fonts/Benzin-Bold.woff") format("woff"), url("https://gb.ru/channels/shared-components_banners/fonts/Benzin-Bold.ttf") format("ttf");
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Benzin-Medium";
+    src: local("Benzin Medium"), url("https://gb.ru/channels/shared-components_banners/fonts/Benzin-Medium.woff") format("woff"), url("https://gb.ru/channels/shared-components_banners/fonts/Benzin-Medium.ttf") format("ttf");
+    font-weight: 400;
+    font-style: normal;
+  }
+  .ny-banner {
+    width: 100%;
+    height: 140px;
+    background-color: #4676F2;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) {
+    .ny-banner {
+      height: 80px;
+    }
+  }
+  .ny-banner.--theme-developer {
+    border-radius: 24px;
+    margin: 8px 0;
+  }
+  .ny-banner__decor-left {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .ny-banner__decor-left {
+      display: block;
+      height: 80px;
+      position: absolute;
+      left: -515px;
+      z-index: 0;
+    }
+  }
+  @media (min-width: 1024px) {
+    .ny-banner__decor-left {
+      left: -184px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .ny-banner__decor-left {
+      left: 0;
+    }
+  }
+  @media (min-width: 1440px) {
+    .ny-banner__decor-left {
+      left: -71px;
+    }
+  }
+  @media (min-width: 1920px) {
+    .ny-banner__decor-left {
+      left: 0;
+    }
+  }
+  .ny-banner__decor-right {
+    content: url("https://gb.ru/channels/shared-components_banners/images/decor-mobile2.png");
+    height: 140px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 0;
+  }
+  @media (min-width: 768px) {
+    .ny-banner__decor-right {
+      left: 524px;
+      content: url("https://gb.ru/channels/shared-components_banners/images/decor-right2.png");
+      height: 80px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .ny-banner__decor-right {
+      left: 658px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .ny-banner__decor-right {
+      left: 900px;
+    }
+  }
+  @media (min-width: 1440px) {
+    .ny-banner__decor-right {
+      left: 962px;
+    }
+  }
+  @media (min-width: 1920px) {
+    .ny-banner__decor-right {
+      left: 1268px;
+    }
+  }
+  .ny-banner__decor-right.--theme-developer {
+    right: -15px;
+  }
+  @media (min-width: 768px) {
+    .ny-banner__decor-right.--theme-developer {
+      right: initial;
+      left: 524px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .ny-banner__decor-right.--theme-developer {
+      left: 682px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .ny-banner__decor-right.--theme-developer {
+      left: 954px;
+    }
+  }
+  @media (min-width: 1440px) {
+    .ny-banner__decor-right.--theme-developer {
+      left: 973px;
+    }
+  }
+  @media (min-width: 1920px) {
+    .ny-banner__decor-right.--theme-developer {
+      left: 1190px;
+    }
+  }
+  .ny-banner__ny-promotion {
+    position: absolute;
+    text-transform: uppercase;
+    top: 16px;
+    left: 16px;
+    z-index: 5;
+    background-color: #E1FF6D;
+    color: #000;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 120%;
+    padding: 6px 16px 4px 16px;
+    border-radius: 16px;
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .ny-banner__ny-promotion {
+      max-width: 149px;
+      font-size: 14px;
+      top: 18px;
+      left: 16px;
+      padding: 6px 13px 4px 13px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .ny-banner__ny-promotion {
+      max-width: 183px;
+      font-size: 18px;
+      top: 13px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .ny-banner__ny-promotion {
+      max-width: none;
+      font-size: 18px;
+      top: 23.5px;
+      left: 16px;
+      padding: 6px 24px 4px 24px;
+    }
+  }
+  @media (min-width: 1440px) {
+    .ny-banner__ny-promotion {
+      font-size: 18px;
+      left: 16px;
+    }
+  }
+  .ny-banner__text {
+    font-family: "Benzin-Bold", sans-serif;
+    width: 216px;
+    position: absolute;
+    top: 60px;
+    left: 16px;
+    z-index: 5;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 100%;
+    text-transform: uppercase;
+  }
+  .ny-banner__text span {
+    color: #E1FF6D;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 100%;
+    font-family: "Benzin-Bold", sans-serif;
+    text-transform: uppercase;
+  }
+  @media (min-width: 768px) {
+    .ny-banner__text {
+      width: 530px;
+      top: 16px;
+      left: 188px;
+      font-size: 20px;
+      line-height: 120%;
+    }
+    .ny-banner__text span {
+      font-size: 20px;
+      line-height: 120%;
+    }
+  }
+  @media (min-width: 1024px) {
+    .ny-banner__text {
+      top: 16px;
+      left: 229px;
+      font-size: 22px;
+    }
+  
+    .ny-banner__text span {
+      font-size: 22px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .ny-banner__text {
+      top: 11px;
+      left: 397px;
+      font-size: 24px;
+    }
+    .ny-banner__text span {
+      font-size: 24px;
+    }
+  }
+  @media (min-width: 1440px) {
+    .ny-banner__text {
+      top: 14px;
+      left: 451px;
+    }
+  }
+  @media (min-width: 1920px) {
+    .ny-banner__text {
+      width: initial;
+      top: 15.5px;
+      left: 451px;
+    }
+  }
+  .ny-banner__sale {
+    font-family: "Benzin-Bold", sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 170%;
+    color: #FFF;
+    position: absolute;
+    top: 78px;
+    right: 32px;
+    z-index: 2;
+    transform: rotate(15deg);
+  }
+  .ny-banner__sale span {
+    font-size: 24px;
+  }
+  @media (min-width: 768px) {
+    .ny-banner__sale {
+      top: 19px;
+      right: 62px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .ny-banner__sale {
+      top: 19px;
+      right: initial;
+      left: 922px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .ny-banner__sale {
+      left: 1126px;
+    }
+  }
+  @media (min-width: 1440px) {
+    .ny-banner__sale {
+      left: 995px;
+    }
+  }
+  @media (min-width: 1920px) {
+    .ny-banner__sale {
+      left: 1278px;
+    }
+  }
+  .ny-banner__sale.--theme-developer {
+    top: 84px;
+    right: 7px;
+  }
+  @media (min-width: 768px) {
+    .ny-banner__sale.--theme-developer {
+      top: 20px;
+      right: 59px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .ny-banner__sale.--theme-developer {
+      top: 20px;
+      right: initial;
+      left: 691px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .ny-banner__sale.--theme-developer {
+      left: 928px;
+    }
+  }
+  @media (min-width: 1440px) {
+    .ny-banner__sale.--theme-developer {
+      left: 946px;
+    }
+  }
+  @media (min-width: 1920px) {
+    .ny-banner__sale.--theme-developer {
+      left: 1169px;
+    }
+  }
+  .ny-banner__sale-mask {
+    position: absolute;
+    top: 60px;
+    right: 5px;
+    z-index: 1;
+  }
+  @media (min-width: 768px) {
+    .ny-banner__sale-mask {
+      top: 1px;
+      right: 33px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .ny-banner__sale-mask {
+      left: 894px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .ny-banner__sale-mask {
+      left: 1097px;
+    }
+  }
+  @media (min-width: 1440px) {
+    .ny-banner__sale-mask {
+      left: 968px;
+    }
+  }
+  @media (min-width: 1920px) {
+    .ny-banner__sale-mask {
+      left: 1251px;
+    }
+  }
+  .ny-banner__sale-mask.--theme-developer {
+    top: 66px;
+    right: -21px;
+  }
+  @media (min-width: 768px) {
+    .ny-banner__sale-mask.--theme-developer {
+      top: 2px;
+      right: 30px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .ny-banner__sale-mask.--theme-developer {
+      left: 665px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .ny-banner__sale-mask.--theme-developer {
+      left: 901px;
+    }
+  }
+  @media (min-width: 1440px) {
+    .ny-banner__sale-mask.--theme-developer {
+      left: 919px;
+    }
+  }
+  @media (min-width: 1920px) {
+    .ny-banner__sale-mask.--theme-developer {
+      left: 1142px;
+    }
+  }
