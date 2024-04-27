@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask_cors import CORS
 from tika import parser
 from parser import ParseHH
+import json
 import os
 
 app = Flask(__name__)
@@ -17,12 +18,11 @@ def predict(vacancy_text):
     return 'vacancy_text'
 
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict_text', methods=['POST'])
 def predict_text():
     content_type = request.headers.get('Content-Type')
     if content_type == 'application/json':
-        response = request.json
-        prediction = predict(response['vacancy_text'])
+        prediction = predict(request.json['vacancy_text'])
         return prediction
 
 
@@ -42,7 +42,7 @@ def predict_pdf():
 
 @app.route('/predict_url', methods=['POST'])
 def predict_url():
-    url = request.json['url']
+    url = request.json['vacancy_url']
     parser_hh = ParseHH(url)
 
     print(parser_hh.title())
