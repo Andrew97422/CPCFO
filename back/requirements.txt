@@ -13,3 +13,4 @@ wheel==0.38.4
 tika~=2.6.0
 requests~=2.31.0
 beautifulsoup4~=4.8.2
+parse_hh_data==0.1.14
