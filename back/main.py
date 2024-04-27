@@ -23,11 +23,17 @@ def predict(vacancy_text):
 @app.route('/predict_text', methods=['POST'])
 def predict_text():
     content_type = request.headers.get('Content-Type')
+
     if content_type == 'application/json':
-        prediction = json.dumps(request.json['vacancy_text'])
-        # sleep(10)
-        print(prediction)
-        return prediction
+        if 'vacancy' in str(request.json['vacancy']):
+            return predict_url(request)
+        else:
+            try:
+                prediction = json.dumps(predict(request.json['vacancy']))
+                # sleep(10)
+                return prediction
+            except:
+                return 'error'
 
 
 @app.route('/predict_pdf', methods=['POST'])
@@ -44,9 +50,9 @@ def predict_pdf():
         return "{'error': 'File not found'}"
 
 
-@app.route('/predict_url', methods=['POST'])
-def predict_url():
-    url = request.json['vacancy_url']
+# @app.route('/predict_url', methods=['POST'])
+def predict_url(req):
+    url = req.json['vacancy']
     parser_hh = ParseHH(url)
 
     print(parser_hh.title())
