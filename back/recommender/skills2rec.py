@@ -1,24 +1,22 @@
-from sentence_transformers import SentenceTransformer, CrossEncoder, util
-from .LexRank import degree_centrality_scores
-import pandas as pd
-import numpy as np
-import nltk
-nltk.download('popular')
-import re
+import io
 import textwrap
+from PIL import Image
 import seaborn as sns
 import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.rcParams.update({'font.size': 20})
-import io
-from PIL import Image
 
-sen_model = SentenceTransformer("cointegrated/LaBSE-en-ru")
-stemmer = nltk.stem.snowball.SnowballStemmer("russian", True)
-def stem(text): return ' '.join([ stemmer.stem(word) for word in nltk.word_tokenize(text)])
+import re
+import nltk
+import numpy as np
+import pandas as pd
+from sentence_transformers import util
+from .utils import degree_centrality_scores
+from .encode import Encoder
 
-I = pd.read_csv('./cache/courses.csv', index_col=0)
-Iembs = sen_model.encode((I['title'] + ' ' + I['description']).astype(str).apply(stem), convert_to_tensor=True)
+
+I = pd.read_csv('recommender/cache/courses.csv', index_col=0)
+Iembs = Encoder()(I['title'] + ' ' + I['description'])
 
 nogos = ['bot','bot','офис','кофе','условия','трудоустройств','болезн','заработн','парковк',
          'дмс','неделя','отдых','карьер','высшее','serttifikat','сертификат']
@@ -56,8 +54,8 @@ def get_querry(body):
 
 def summarize(document, max_signs=30):
     words = nltk.word_tokenize(re.sub('\s+',' ', re.sub('[:;()!?<>.,\[\]\'\"`]',' ', str(document))))
-    embeddings = sen_model.encode([stemmer.stem(word) for word in words], convert_to_tensor=True)
-    cos_scores = util.cos_sim(embeddings, embeddings).cpu().numpy()
+    embs = Encoder()(words, stem=True)
+    cos_scores = util.cos_sim(embs, embs).cpu().numpy()
     centrality_scores = degree_centrality_scores(cos_scores, threshold=None)
     central_indices = np.argsort(-centrality_scores)
     signes_counter = 0
@@ -70,7 +68,7 @@ def get_coherence_map(u) -> pd.DataFrame:
     '''index=title, columns=skills'''
     u = pd.Series(u)
     querry = get_querry(u.body)
-    qembs = sen_model.encode(list(map(stem, [u.title] + querry.values)), convert_to_tensor=True)
+    qembs = Encoder()([u.title] + querry.values)
     sim = util.cos_sim(Iembs, qembs).cpu().numpy()
 
     rec_idxs = np.argsort(sim.sum(1))[:-5:-1]

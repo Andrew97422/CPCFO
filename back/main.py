@@ -16,8 +16,10 @@ def index():
     return 'index'
 
 
-def predict(vacancy_text):
-    return vacancy_text
+def predict(body, title=''):
+    u = {'body':body, 'title':title}
+
+    return body
 
 
 @app.route('/predict_text', methods=['GET', 'POST'])

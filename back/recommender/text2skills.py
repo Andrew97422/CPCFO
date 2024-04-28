@@ -2,6 +2,7 @@ import re
 import torch
 from peft import PeftModel, PeftConfig
 from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig, BitsAndBytesConfig
+from .utils import singleton
 
 MODEL_NAME = "IlyaGusev/saiga_mistral_7b"
 DEFAULT_MESSAGE_TEMPLATE = "<s>{role}\n{content}</s>"
@@ -44,14 +45,6 @@ class Conversation:
         final_text += DEFAULT_RESPONSE_TEMPLATE
         return final_text.strip()
 
-
-def singleton(class_):
-    instances = {}
-    def getinstance(*args, **kwargs):
-        if class_ not in instances:
-            instances[class_] = class_(*args, **kwargs)
-        return instances[class_]
-    return getinstance
 
 @singleton
 class SaigaHR:
