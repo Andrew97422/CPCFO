@@ -1,26 +1,28 @@
 version: "3.3"
 services:
     back:
-        image: "python:3.11"
+        container_name: back
         build:
             context: ./back
             dockerfile: Dockerfile
-        container_name: back
         ports:
             - "26601:26601"
+        environment:
+            - FLASK_ENV=development
+            - APP_SETTINGS=app.config.DevelopmentConfig
+            - SECRET_KEY=secret
 
     front:
         container_name: front
         build:
             context: ./front
             dockerfile: Dockerfile
-
         environment:
-            - HOST=http://localhost:26601
             - NODE_ENV=development
             - NEXT_TELEMETRY_DISABLED=1
-
+            - REACT_APP_BACKEND_SERVICE_URL=http://localhost:26601
         restart: always
-
         ports:
             - "26600:26600"
+        depends_on:
+            - back

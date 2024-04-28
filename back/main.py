@@ -17,23 +17,20 @@ def index():
 
 
 def predict(vacancy_text):
-    return 'vacancy_text'
+    return vacancy_text
 
 
-@app.route('/predict_text', methods=['POST'])
+@app.route('/predict_text', methods=['GET', 'POST'])
 def predict_text():
     content_type = request.headers.get('Content-Type')
 
+    text = str(request.json['vacancy'])
     if content_type == 'application/json':
-        if 'vacancy' in str(request.json['vacancy']):
+        if 'vacancy/' in text:
             return predict_url(request)
         else:
-            try:
-                prediction = json.dumps(predict(request.json['vacancy']))
-                # sleep(10)
-                return prediction
-            except:
-                return 'error'
+            prediction = predict(parser_hh.description())
+            return prediction
 
 
 @app.route('/predict_pdf', methods=['POST'])
@@ -67,4 +64,4 @@ def page_not_found(e):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=26601)
+    app.run(host='0.0.0.0', debug=True, port=26601)

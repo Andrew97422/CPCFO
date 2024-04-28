@@ -12,9 +12,9 @@ RUN npm install react-scripts@3.4.1 -g --silent
 
 # COPY . ./
 
-EXPOSE 3000
+EXPOSE 26600
 
 ENV NEXT_TELEMETRY_DISABLED 1
-ENV PORT 3000
+ENV PORT 26600
 
 CMD ["npm", "start"]

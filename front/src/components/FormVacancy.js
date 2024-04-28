@@ -4,8 +4,8 @@ import axios from 'axios';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-let text_url = "${process.env.HOST}/predict_text";
-let pdf_url = "${process.env.HOST}/predict_pdf";
+let text_url = `http://localhost:26601/predict_text`;
+let pdf_url = `http://localhost:26601/predict_pdf`;
 
 const headers = {
   'Content-Type': 'application/json'
@@ -34,8 +34,10 @@ export default function FormVacancy() {
     if (e.target['txt'].value.trim() !== '') {
       const data1 = e.target['txt'].value.trim();
       const resp = await sendRequest(data1)
-      .then((resp) => console.log("response = " + resp.data))
-      .then(() => {
+      .then((resp) => {
+        console.log("response = " + resp.data);
+        setData(resp.data);
+      }).then(() => {
         setLoading(false);
       });
     } else if (e.target['pdf'].value.trim() !== '') {
@@ -71,21 +73,28 @@ export default function FormVacancy() {
               <Form.Control size="lg" type="file" id='pdf'/>
             </Row>
             <br />
-          
+
             <br />
             <Row>
-              <Button variant="primary" 
+              <Button variant="primary"
                 type="submit"
                 disabled={isLoading}
-                onClick={!isLoading ? 
+                onClick={!isLoading ?
                   () => handleClick : null}
               >
                 {isLoading ? 'Рекомендации загружаются…' : 'Загрузить рекомендации'}
               </Button>
             </Row>
+            <br />
+
+            <br />
+            {data!=''?<Row>
+              data
+              {/* <img src={data}/> */}
+            </Row>:0}
           </Container>
         </Form.Group>
-      </Form>        
+      </Form>
     </div>
   )
 }
