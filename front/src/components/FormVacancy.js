@@ -34,21 +34,32 @@ export default function FormVacancy() {
     if (e.target['txt'].value.trim() !== '') {
       const data1 = e.target['txt'].value.trim();
       const resp = await sendRequest(data1)
-      .then((resp) => {
-        console.log("response = " + resp.data);
-        setData(resp.data);
+      .then((res) => {
+        console.log("response = " + res.data);
+        setData(res.data);
+        console.log("DATA = " + data);
       }).then(() => {
         setLoading(false);
       });
     } else if (e.target['pdf'].value.trim() !== '') {
       const data1 = e.target['pdf'].value.trim();
       const resp = await sendRequest(data1)
-      .then((resp) => console.log("response = " + resp.data))
-      .then(() => {
+      .then((res) => {
+        console.log("response = " + res.data)
+        setData(res.data);
+      }).then(() => {
         setLoading(false);
       });
       console.log("response = " + resp.data);
     }
+    /*{ <img src={data}/> }
+    */
+    /*
+    {data!=''? 
+            <Row>
+              {data}
+            </Row>: ''}
+    */
     setLoading(false);
   };
 
@@ -88,10 +99,10 @@ export default function FormVacancy() {
             <br />
 
             <br />
-            {data!=''?<Row>
-              {data}
-              {/* <img src={data}/> */}
-            </Row>:''}
+            {data!=''? 
+            <Row>
+              { <img src={'../../public/img/result.png'} alt=""/> }
+            </Row>: ''}
           </Container>
         </Form.Group>
       </Form>
