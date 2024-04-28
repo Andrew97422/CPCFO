@@ -89,7 +89,8 @@ def show_coherence_map(coherence_map: pd.DataFrame, vmin=0, vmax=None, T=10, x0=
     wrap_ylabels(ax, 20)
 
 def plot2image():
-    img_buf = io.BytesIO()
-    plt.savefig(img_buf, format='png', bbox_inches='tight')
+    # img_buf = io.BytesIO()
+    img_buf = 'result.png'
+    plt.savefig(img_buf, bbox_inches='tight') #format='png',
     plt.close()
     return Image.open(img_buf)

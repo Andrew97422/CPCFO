@@ -1,6 +1,13 @@
 version: "3.3"
 services:
     back:
+        deploy:
+            resources:
+                reservations:
+                    devices:
+                        - driver: nvidia
+                          count: 1
+                          capabilities: [gpu]
         container_name: back
         build:
             context: ./back
