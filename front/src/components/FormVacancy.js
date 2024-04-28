@@ -89,9 +89,9 @@ export default function FormVacancy() {
 
             <br />
             {data!=''?<Row>
-              data
+              {data}
               {/* <img src={data}/> */}
-            </Row>:0}
+            </Row>:''}
           </Container>
         </Form.Group>
       </Form>

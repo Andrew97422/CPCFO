@@ -29,7 +29,7 @@ def predict_text():
         if 'vacancy/' in text:
             return predict_url(request)
         else:
-            prediction = predict(parser_hh.description())
+            prediction = predict(text)
             return prediction
 
 

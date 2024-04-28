@@ -6,7 +6,7 @@ import '../styles/main.min.css';
 
 export default function Text() {
   return (
-    <div class='ui-pagination-wrapper-quantity'>
+    <div>
       <h1 class="gkb-program-header__title ui-text-hero--3 ui-text--medium">
         Dynamical LR
       </h1>
