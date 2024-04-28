@@ -2,14 +2,15 @@ FROM node:18.15.0-alpine
 
 WORKDIR /app
 
-ENV PATH /app/node_modules/.bin:$PATH
-
-COPY package.json ./
-COPY package-lock.json ./
+# ENV PATH /app/node_modules/.bin:$PATH
+COPY public/ /app/public
+COPY src/ /app/src
+COPY package.json /app/
+COPY package-lock.json /app/
 RUN npm install --silent
 RUN npm install react-scripts@3.4.1 -g --silent
 
-COPY . ./
+# COPY . ./
 
 EXPOSE 3000
 
