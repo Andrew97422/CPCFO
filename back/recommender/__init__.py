@@ -14,6 +14,8 @@ def get_rec_and_image(u):
     return cm.index.to_list(), plot2image()
 
 def reccomend(id, title, description, T=0.9):
+    '''Returns: list(cursees titles), PIL.Image
+    '''
     u = {'name':id, 'title':title, 'description':description}
     skills = vacancy_to_skills_rag(u, T)
     return get_rec_and_image({'title': title, 'body': skills})

@@ -2,10 +2,10 @@ from flask import Flask, request
 from flask_cors import CORS
 from tika import parser
 from parser import ParseHH
-from time import sleep
-
-import json
+from PIL import Image
 import os
+
+from recommender import reccomend
 
 app = Flask(__name__)
 CORS(app)
@@ -16,10 +16,9 @@ def index():
     return 'index'
 
 
-def predict(body, title=''):
-    u = {'body':body, 'title':title}
-
-    return body
+def predict(id, title, description):
+    rec_titles, img = reccomend(id, title, description)
+    return rec_titles
 
 
 @app.route('/predict_text', methods=['GET', 'POST'])
@@ -31,7 +30,7 @@ def predict_text():
         if 'vacancy/' in text:
             return predict_url(request)
         else:
-            prediction = predict(text)
+            prediction = predict('','',text)
             return prediction
 
 
@@ -42,7 +41,7 @@ def predict_pdf():
 
     if file:
         parsed = parser.from_file(file.filename)
-        prediction = predict(parsed['content'].strip())
+        prediction = predict('','',parsed['content'].strip())
         os.remove(file.filename)
         return prediction
     else:
@@ -51,12 +50,11 @@ def predict_pdf():
 
 # @app.route('/predict_url', methods=['POST'])
 def predict_url(req):
-    url = req.json['vacancy']
-    parser_hh = ParseHH(url)
-
-    print(parser_hh.title())
-    print(parser_hh.description())
-    prediction = predict(parser_hh.description())
+    try:
+        parser_hh = ParseHH(req.json['vacancy'])
+    except:
+        return "{'error': 'Vacancy cannot be downloaded from provided URL.((('}"
+    prediction = predict(parser_hh.id, parser_hh.title(), parser_hh.description())
     return prediction
 
 

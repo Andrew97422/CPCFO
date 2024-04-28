@@ -133,23 +133,15 @@ def parse_text(url):
 
 class ParseHH:
     def __init__(self, url):
-        self.url = url
-
-    def extract_id(self):
-        self.id = self.url.split('vacancy/')[1].split('/')[0]
-
-    def parse(self):
-        self.extract_id()
-        return download.vacancy(self.id)
+        self.id = url.split('vacancy/')[1].split('/')[0]
+        self.raw = download.vacancy(self.id, max_requests_number=1)
 
     def description(self):
-        self.extract_id()
-        soup = BeautifulSoup(download.vacancy(self.id)['description'], 'html.parser')
+        soup = BeautifulSoup(self.raw['description'], 'html.parser')
         return soup.text
 
     def title(self):
-        self.extract_id()
-        soup = BeautifulSoup(download.vacancy(self.id)['name'], 'html.parser')
+        soup = BeautifulSoup(self.raw['name'], 'html.parser')
         return soup.text
 
 # courses = parse_text('https://gb.ru/courses/all')
